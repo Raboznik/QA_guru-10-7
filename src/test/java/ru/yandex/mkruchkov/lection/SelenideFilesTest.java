@@ -1,6 +1,5 @@
-package ru.yandex.mkruchkov;
+package ru.yandex.mkruchkov.lection;
 
-import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,7 +15,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SelenideFilesTest {
 
-    private ClassLoader cl = SelenideFilesTest.class.getClassLoader();
 
     @Test
     void downloadTest() throws IOException {
@@ -24,10 +22,9 @@ public class SelenideFilesTest {
         File downloadedFile = $("#raw-url").download();
 
         try (InputStream is = new FileInputStream(downloadedFile)) {
-            assertThat(new String(is.readAllBytes(), StandardCharsets.UTF_8)).contains("\"Licensor\" shall mean the copyright owner or entity authorized");
-
+            assertThat(new String(is.readAllBytes(), StandardCharsets.UTF_8))
+                    .contains("\"Licensor\" shall mean the copyright owner or entity authorized");
         }
-
     }
 
 
